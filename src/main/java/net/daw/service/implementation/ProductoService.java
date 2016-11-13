@@ -62,7 +62,7 @@ public class ProductoService implements TableServiceInterface, ViewServiceInterf
     }
 
     private Boolean checkpermission(String strMethodName) throws Exception {
-        ProductoBean oUserBean = (ProductoBean) oRequest.getSession().getAttribute("productoBean");
+        UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
         if (oUserBean != null) {
             return true;
         } else {

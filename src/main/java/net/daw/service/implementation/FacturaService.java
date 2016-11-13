@@ -61,7 +61,7 @@ public class FacturaService implements TableServiceInterface, ViewServiceInterfa
     }
 
     private Boolean checkpermission(String strMethodName) throws Exception {
-        FacturaBean oUserBean = (FacturaBean) oRequest.getSession().getAttribute("facturaBean");
+        UsuarioBean oUserBean = (UsuarioBean) oRequest.getSession().getAttribute("userBean");
         if (oUserBean != null) {
             return true;
         } else {
