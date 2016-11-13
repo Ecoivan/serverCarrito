@@ -351,7 +351,7 @@ public class UsuarioService implements TableServiceInterface, ViewServiceInterfa
         if (oUserBean == null) {
             return new ReplyBean(403, JsonMessage.getJsonMsg(403, "Unauthorized"));
         } else {
-            return new ReplyBean(200, JsonMessage.getJsonExpression(200, oUserBean.getId_estado().toString()));
+            return new ReplyBean(200, JsonMessage.getJsonExpression(200, oUserBean.getId().toString()));
         }
     }
 
