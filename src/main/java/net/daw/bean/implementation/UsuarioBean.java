@@ -33,6 +33,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import net.daw.bean.publicinterface.GenericBean;
+import net.daw.dao.implementation.TipousuarioDao;
 import net.daw.helper.statics.EncodingUtilHelper;
 
 public class UsuarioBean implements GenericBean {
@@ -51,6 +52,10 @@ public class UsuarioBean implements GenericBean {
     private String login = "";
     @Expose
     private String password = "";
+    @Expose
+    private Integer id_tipo_usuario;
+    @Expose(deserialize = false)
+    private TipousuarioBean tipo_usuario = null;
 
     public UsuarioBean() {
         this.id = 0;
@@ -157,6 +162,34 @@ public class UsuarioBean implements GenericBean {
     public void setPassword(String password) {
         this.password = password;
     }
+    
+    /**
+     * @return the tipo_usuario
+     */
+    public Integer getTipo_usuario() {
+        return id_tipo_usuario;
+    }
+
+    /**
+     * @param tipo_usuario the tipo_usuario to set
+     */
+    public void setTipo_usuario(Integer id_tipo_usuario) {
+        this.id_tipo_usuario = id_tipo_usuario;
+    }
+
+    /**
+     * @return the obj_usuario
+     */
+    public TipousuarioBean getObj_usuario() {
+        return tipo_usuario;
+    }
+
+    /**
+     * @param obj_usuario the obj_usuario to set
+     */
+    public void setObj_usuario(TipousuarioBean tipo_usuario) {
+        this.tipo_usuario = tipo_usuario;
+    }
 
     @Override
     public String getColumns() {
@@ -167,8 +200,9 @@ public class UsuarioBean implements GenericBean {
         strColumns += "apellido2,";
         strColumns += "dni,";
         strColumns += "login,";
-        strColumns += "password";
-
+        strColumns += "password,";
+        strColumns += "tipo_usuario";
+        
         return strColumns;
     }
 
@@ -181,8 +215,9 @@ public class UsuarioBean implements GenericBean {
         strColumns += EncodingUtilHelper.quotate(getApellido2()) + ",";
         strColumns += EncodingUtilHelper.quotate(getDni()) + ",";
         strColumns += EncodingUtilHelper.quotate(getLogin()) + ",";
-        strColumns += EncodingUtilHelper.quotate(getPassword());
-
+        strColumns += EncodingUtilHelper.quotate(getPassword() + ",");
+        strColumns += getTipo_usuario();
+        
         return strColumns;
     }
 
@@ -195,8 +230,9 @@ public class UsuarioBean implements GenericBean {
         strPairs += "apellido2=" + EncodingUtilHelper.quotate(getApellido2()) + ",";
         strPairs += "dni=" + EncodingUtilHelper.quotate(getDni()) + ",";
         strPairs += "login=" + EncodingUtilHelper.quotate(getLogin()) + ",";
-        strPairs += "password=" + EncodingUtilHelper.quotate(getPassword());
-
+        strPairs += "password=" + EncodingUtilHelper.quotate(getPassword() + ",");
+        strPairs += "tipo_usuario=" + getTipo_usuario();
+        
         return strPairs;
     }
 
@@ -209,26 +245,17 @@ public class UsuarioBean implements GenericBean {
         this.setDni(oResultSet.getString("dni"));
         this.setLogin(oResultSet.getString("login"));
         this.setPassword(oResultSet.getString("password"));
-        /*
+        
         if (expand > 0) {
-            EstadoBean oEstadoBean = new EstadoBean();
-            EstadoDao oEstadoDao = new EstadoDao(pooledConnection);
-            oEstadoBean.setId(oResultSet.getInt("id_estado"));
+            TipousuarioBean oEstadoBean = new TipousuarioBean();
+            TipousuarioDao oEstadoDao = new TipousuarioDao(pooledConnection);
+            oEstadoBean.setId(oResultSet.getInt("tipo_usuario"));
             oEstadoBean = oEstadoDao.get(oEstadoBean, expand - 1);
-            this.setObj_estado(oEstadoBean);
+            this.setObj_usuario(oEstadoBean);
         } else {
-            this.setId_estado(oResultSet.getInt("id_estado"));
+            this.setTipo_usuario(oResultSet.getInt("tipo_usuario"));
         }
-        if (expand > 0) {
-            TipousuarioBean oTipousuarioBean = new TipousuarioBean();
-            TipousuarioDao oTipousuarioDao = new TipousuarioDao(pooledConnection);
-            oTipousuarioBean.setId(oResultSet.getInt("id_tipousuario"));
-            oTipousuarioBean = oTipousuarioDao.get(oTipousuarioBean, expand - 1);
-            this.setObj_tipousuario(oTipousuarioBean);
-        } else {
-            this.setId_tipousuario(oResultSet.getInt("id_tipousuario"));
-        }
-*/
+
         return this;
 
     }

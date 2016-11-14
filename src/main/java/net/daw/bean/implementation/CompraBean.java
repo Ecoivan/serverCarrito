@@ -193,9 +193,6 @@ public class CompraBean implements GenericBean {
     public CompraBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));
         this.setCantidad(oResultSet.getInt("cantidad"));
-        this.setId_usuario(oResultSet.getInt("id_usuario"));
-        this.setId_factura(oResultSet.getInt("id_factura"));
-        this.setId_producto(oResultSet.getInt("id_producto"));
         
         if (expand > 0) {
             UsuarioBean oEstadoBean = new UsuarioBean();
