@@ -109,7 +109,7 @@ public class ProductoBean implements GenericBean {
         String strColumns = "";
         strColumns += getId() + ",";
         strColumns += EncodingUtilHelper.quotate(getCodigo()) + ",";
-        strColumns +=getPrecio();
+        strColumns += getPrecio();
 
         return strColumns;
     }
@@ -128,27 +128,8 @@ public class ProductoBean implements GenericBean {
     public ProductoBean fill(ResultSet oResultSet, Connection pooledConnection, Integer expand) throws SQLException, Exception {
         this.setId(oResultSet.getInt("id"));
         this.setCodigo(oResultSet.getString("codigo"));
-        this.setPrecio(oResultSet.getInt("precio"));
-        /*
-        if (expand > 0) {
-            EstadoBean oEstadoBean = new EstadoBean();
-            EstadoDao oEstadoDao = new EstadoDao(pooledConnection);
-            oEstadoBean.setId(oResultSet.getInt("id_estado"));
-            oEstadoBean = oEstadoDao.get(oEstadoBean, expand - 1);
-            this.setObj_estado(oEstadoBean);
-        } else {
-            this.setId_estado(oResultSet.getInt("id_estado"));
-        }
-        if (expand > 0) {
-            TipousuarioBean oTipousuarioBean = new TipousuarioBean();
-            TipousuarioDao oTipousuarioDao = new TipousuarioDao(pooledConnection);
-            oTipousuarioBean.setId(oResultSet.getInt("id_tipousuario"));
-            oTipousuarioBean = oTipousuarioDao.get(oTipousuarioBean, expand - 1);
-            this.setObj_tipousuario(oTipousuarioBean);
-        } else {
-            this.setId_tipousuario(oResultSet.getInt("id_tipousuario"));
-        }
-*/
+        this.setPrecio(oResultSet.getInt("precio"));       
+        
         return this;
 
     }
