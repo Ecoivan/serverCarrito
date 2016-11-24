@@ -52,10 +52,10 @@ public class UsuarioBean implements GenericBean {
     private String login = "";
     @Expose
     private String password = "";
-    @Expose
-    private Integer id_tipo_usuario;
+    @Expose(serialize = false)
+    private Integer tipo_usuario;
     @Expose(deserialize = false)
-    private TipousuarioBean tipo_usuario = null;
+    private TipousuarioBean obj_tipo_usuario = null;
 
     public UsuarioBean() {
         this.id = 0;
@@ -167,28 +167,28 @@ public class UsuarioBean implements GenericBean {
      * @return the tipo_usuario
      */
     public Integer getTipo_usuario() {
-        return id_tipo_usuario;
+        return tipo_usuario;
     }
 
     /**
      * @param tipo_usuario the tipo_usuario to set
      */
-    public void setTipo_usuario(Integer id_tipo_usuario) {
-        this.id_tipo_usuario = id_tipo_usuario;
+    public void setTipo_usuario(Integer tipo_usuario) {
+        this.tipo_usuario = tipo_usuario;
     }
 
     /**
      * @return the obj_usuario
      */
     public TipousuarioBean getObj_usuario() {
-        return tipo_usuario;
+        return obj_tipo_usuario;
     }
 
     /**
      * @param obj_usuario the obj_usuario to set
      */
-    public void setObj_usuario(TipousuarioBean tipo_usuario) {
-        this.tipo_usuario = tipo_usuario;
+    public void setObj_usuario(TipousuarioBean obj_tipo_usuario) {
+        this.obj_tipo_usuario = obj_tipo_usuario;
     }
 
     @Override
@@ -215,7 +215,7 @@ public class UsuarioBean implements GenericBean {
         strColumns += EncodingUtilHelper.quotate(getApellido2()) + ",";
         strColumns += EncodingUtilHelper.quotate(getDni()) + ",";
         strColumns += EncodingUtilHelper.quotate(getLogin()) + ",";
-        strColumns += EncodingUtilHelper.quotate(getPassword() + ",");
+        strColumns += EncodingUtilHelper.quotate(getPassword()) + ",";
         strColumns += getTipo_usuario();
         
         return strColumns;

@@ -20,15 +20,15 @@ public class CompraBean implements GenericBean {
     private Integer id;
     @Expose
     private Integer cantidad;
-    @Expose
+    @Expose(serialize = false)
     private Integer id_usuario;
     @Expose(deserialize = false)
     private UsuarioBean obj_usuario = null;
-    @Expose
+    @Expose(serialize = false)
     private Integer id_factura;
     @Expose(deserialize = false)
     private FacturaBean obj_factura = null;
-    @Expose
+    @Expose(serialize = false)
     private Integer id_producto;
     @Expose(deserialize = false)
     private ProductoBean obj_producto = null;

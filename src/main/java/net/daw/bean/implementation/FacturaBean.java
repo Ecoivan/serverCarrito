@@ -29,9 +29,12 @@
 package net.daw.bean.implementation;
 
 import com.google.gson.annotations.Expose;
+import static java.lang.String.format;
+import static java.lang.String.format;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import net.daw.bean.publicinterface.GenericBean;
 import net.daw.helper.statics.EncodingUtilHelper;
@@ -41,7 +44,7 @@ public class FacturaBean implements GenericBean {
     @Expose
     private Integer id;
     @Expose
-    private Date fecha;
+    private Date fecha = new Date();
 
     public FacturaBean() {
         this.setId((Integer) 0);
@@ -92,16 +95,17 @@ public class FacturaBean implements GenericBean {
     public String getValues() {
         String strColumns = "";
         strColumns += getId() + ",";
-        strColumns += getFecha();
+        strColumns += EncodingUtilHelper.stringifyAndQuotate(fecha);
         
         return strColumns;
     }
 
     @Override
     public String toPairs() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String strPairs = "";
         strPairs += "id=" + getId() + ",";
-        strPairs += "fecha=" + getFecha();
+        strPairs += "fecha=" + EncodingUtilHelper.quotate(format.format(fecha));
 
         return strPairs;
     }
