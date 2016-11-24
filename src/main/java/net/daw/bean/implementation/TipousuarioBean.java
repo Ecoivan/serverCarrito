@@ -65,7 +65,7 @@ public class TipousuarioBean implements GenericBean {
     public String getValues() {
         String strColumns = "";
         strColumns += getId() + ",";
-        strColumns += EncodingUtilHelper.quotate(getAcceso()) + ",";
+        strColumns += EncodingUtilHelper.quotate(getAcceso());
         
         return strColumns;
     }
@@ -74,7 +74,7 @@ public class TipousuarioBean implements GenericBean {
     public String toPairs() {
         String strPairs = "";
         strPairs += "id=" + getId() + ",";
-        strPairs += "acceso=" + EncodingUtilHelper.quotate(getAcceso()) + ",";
+        strPairs += "acceso=" + EncodingUtilHelper.quotate(getAcceso());
         
         return strPairs;
     }
